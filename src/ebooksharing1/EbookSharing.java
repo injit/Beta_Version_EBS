@@ -38,8 +38,8 @@ public class EbookSharing {
 //            Logger.getLogger(EbookSharing.class.getName()).log(Level.SEVERE, null, ex);
 //        }
             
-        tabpannedAH tbah = new tabpannedAH();
-        tbah.setVisible(true);
+        //tabpannedAH tbah = new tabpannedAH();
+        //tbah.setVisible(true);
     }
     
 }
