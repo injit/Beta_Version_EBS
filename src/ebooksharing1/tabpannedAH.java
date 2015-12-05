@@ -309,6 +309,7 @@ public class tabpannedAH extends javax.swing.JFrame {
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         // TODO add your handling code here:
         //String file_name = "test.txt";
+        ///changed 
         String U_name = UserNameTextField.getText();
         String P_word = PasswordField1.getText();
         String F_name = FirstNameTextField.getText();
