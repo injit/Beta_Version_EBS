@@ -1,6 +1,8 @@
 package ebooksharing1;
 
 import java.awt.Toolkit;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.event.WindowEvent;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -24,6 +26,7 @@ public class tabpannedAH extends javax.swing.JFrame {
      */
     public tabpannedAH() {
         initComponents();
+        EmailFormatControl();
     }
 
     /**
@@ -306,6 +309,15 @@ public class tabpannedAH extends javax.swing.JFrame {
         cancel();
     }//GEN-LAST:event_VisitorButtonActionPerformed
 
+    private void EmailFormatControl() {
+        EmailTextField.setText("abc@example.com");
+        EmailTextField.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                EmailTextField.setText("");
+            }
+        });
+    }
     private void RegisterButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterButtonActionPerformed
         // TODO add your handling code here:
         //String file_name = "test.txt";
@@ -349,48 +361,40 @@ public class tabpannedAH extends javax.swing.JFrame {
                 if (UN.equalsIgnoreCase(U_name)) {
                     checkUserName = true;
                 }
-                if (Uemail.equalsIgnoreCase(E_add)) {
+                if (Uemail.equalsIgnoreCase(E_add) || E_add.equalsIgnoreCase("abc@example.com")) {
                     checkemail = true;
                 }
 
             }
-            if (!checkUserName) {
-                /*
-                INSERT INTO userInfo (username,password,email,firstname,lastname,point_balance,is_SU) 
-VALUES
- ('user1','sit','odio@lobortisauguescelerisque.com','Bo','Washington',26,True);
-                */
-                if (!checkemail) {
-                    String query = "Insert Into UserInfo (username,password,email,firstname,lastname,point_balance,is_SU) Values ('" + U_name + "','" + P_word + "','" + E_add + "','" + F_name + "','" + L_name + "',"+ 0 + "," + result + ")";
-                            //"//," + 0+")";//,'" +0+"')";
+            if (!U_name.isEmpty() && !P_word.isEmpty() && !F_name.isEmpty() && !L_name.isEmpty() && !E_add.isEmpty() && (jRadioButton3.isSelected() || jRadioButton4.isSelected())) {
+                if (!checkUserName) {
+                    if (!checkemail) {
+                        String query = "Insert Into UserInfo (username,password,email,firstname,lastname,point_balance,is_SU) Values ('" + U_name + "','" + P_word + "','" + E_add + "','" + F_name + "','" + L_name + "'," + 0 + "," + result + ")";
+                    //"//," + 0+")";//,'" +0+"')";
 
-                    if (!U_name.isEmpty() && !P_word.isEmpty() && !F_name.isEmpty() && !L_name.isEmpty() && !E_add.isEmpty() && (jRadioButton3.isSelected() || jRadioButton4.isSelected())) {
+                        //if (!U_name.isEmpty() && !P_word.isEmpty() && !F_name.isEmpty() && !L_name.isEmpty() && !E_add.isEmpty() && (jRadioButton3.isSelected() || jRadioButton4.isSelected())) {
                         if (jRadioButton3.isSelected())// && jRadioButton3.getText().equals("Super User"))
                         {
                             String input = JOptionPane.showInputDialog(null, "Enter Your Access code:", "Verification", JOptionPane.OK_OPTION);
                             if (input != null) {
 
-                                if (input.equals("Access"))//This is a hard coded Access code for Super User registration
+                                if (input.equalsIgnoreCase("Access"))//This is a hard coded Access code for Super User registration
                                 {
                                     JOptionPane.showMessageDialog(null, "Congratulations! Access granted, You have now Super User privilege.");
                                     stmt.executeUpdate(query);
-                                    /*while(rs.next()){
-                                     System.out.println("Un"+ rs.getString("UserName")+ "UP "+ rs.getString("UserPassword")+ "FN "+ rs.getString("FirstName")+ "LN "+ rs.getString("LastName")+"email "+rs.getString("Email")+"UID "+ rs.getBigDecimal("UserID")+ "UType "+ rs.getString("UserType"));
-                                     }*/
-                                    //System.out.println("Connected to db");
                                     conn.close();
                                     cancel();
                                     GreetingPage gp = new GreetingPage();
                                     gp.setVisible(true);
                                 } else {
-                                    final JPanel jp = new JPanel();
-                                    JOptionPane.showMessageDialog(jp, "your access code is wrong !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+                                    //final JPanel jp = new JPanel();
+                                    JOptionPane.showMessageDialog(null, "your access code is wrong !!!", "Warning", JOptionPane.WARNING_MESSAGE);
                                 }
-
-                            } else {
-                                final JPanel jp = new JPanel();
-                                JOptionPane.showMessageDialog(jp, "you clicked cancel !!! Try again", "Cancelled", JOptionPane.WARNING_MESSAGE);
                             }
+//                            } else {
+//                                //final JPanel jp = new JPanel();
+//                                JOptionPane.showMessageDialog(null, "you clicked cancel !!! Try again", "Cancelled", JOptionPane.WARNING_MESSAGE);
+//                            }
                         } else {
 
                             stmt.executeUpdate(query);
@@ -401,15 +405,18 @@ VALUES
                             cancel();
                         }
 
+//                    } else {
+//                        JOptionPane.showMessageDialog(null, "All field needs to be filled out.");
+//                    }
                     } else {
-                        JOptionPane.showMessageDialog(null, "All field needs to be filled out.");
+                        JOptionPane.showMessageDialog(null, "This email address is not valid.");
                     }
+                    //cancel();
                 } else {
-                    JOptionPane.showMessageDialog(null, "This email address is already used.");
+                    JOptionPane.showMessageDialog(null, "UserName already taken.");
                 }
-                //cancel();
             } else {
-                JOptionPane.showMessageDialog(null, "UserName already taken.");
+                JOptionPane.showMessageDialog(null, "All field needs to be filled out.");
             }
             //conn.close();
         } catch (Exception e) {
@@ -422,7 +429,7 @@ VALUES
         // TODO add your handling code here:
         JOptionPane.showMessageDialog(null, "Thank You for Using Ebook Application.");
         cancel();
-        
+
         //tabpannedAH AH = new tabpannedAH();
         //AH.setVisible(true);
     }//GEN-LAST:event_CancelButtonActionPerformed
@@ -458,8 +465,8 @@ VALUES
 
                     if (UN.equalsIgnoreCase(UserNameText) && PW.equals(PassWordText)) {
                         checkmatch = true;
-                        usernametogui = User_result.getString("userName"); 
-                        firstNametogui = User_result.getString("firstName"); 
+                        usernametogui = User_result.getString("userName");
+                        firstNametogui = User_result.getString("firstName");
                         SuperUserType = User_result.getBoolean("is_SU");
                         blacklisted = User_result.getBoolean("in_blacklist");
                     }
@@ -481,6 +488,8 @@ VALUES
                         rup.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "You are blacklisted, can't login.", "warning", JOptionPane.WARNING_MESSAGE);
+                        this.UserNameTextField.setText("");
+                        this.UserPassTextField.setText("");
                         //cancel();
                     }
                 } else {
