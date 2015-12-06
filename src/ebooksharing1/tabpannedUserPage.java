@@ -230,6 +230,9 @@ public class tabpannedUserPage extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTable1KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
         });
         jScrollPane1.setViewportView(jTable1);
 
@@ -1640,6 +1643,13 @@ public class tabpannedUserPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No book selected");
         }
     }//GEN-LAST:event_ComplaintActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        // TODO add your handling code here:
+        displaySummary();
+        populateReviewtable();
+        
+    }//GEN-LAST:event_jTable1KeyReleased
 
 //Helper functions
     private void deduct_points_of_inviter(String inviter, int sharing_time, int bid) throws SQLException {

@@ -122,6 +122,11 @@ public class VisitorPage extends javax.swing.JFrame {
                 jTable1MouseClicked(evt);
             }
         });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel12.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -303,6 +308,13 @@ public class VisitorPage extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Sorry, You have no access!");
 
     }//GEN-LAST:event_ComplaintActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        // TODO add your handling code here:
+        //displaySummary();
+        books_row_detail();
+        populateReviewtable();
+    }//GEN-LAST:event_jTable1KeyReleased
 
     //Helper functions
     private void populateReviewtable() {
