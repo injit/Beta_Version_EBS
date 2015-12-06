@@ -43,7 +43,7 @@ public class SuperUserFrame extends javax.swing.JFrame {
      * @param firstname
      */
     public SuperUserFrame(String username, String firstname) {
-
+        super("Super User Page");
         //get today's date
         SuperUserFrame.dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         SuperUserFrame.cal = Calendar.getInstance();
