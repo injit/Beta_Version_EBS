@@ -490,17 +490,17 @@ public class tabpannedAH extends javax.swing.JFrame {
                         rup.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "You are blacklisted, can't login.", "warning", JOptionPane.WARNING_MESSAGE);
-                        this.UserNameTextField.setText("");
+                        //this.UserNameTextField.setText("");
                         this.UserPassTextField.setText("");
                         //cancel();
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid creditials, Try again.");
-                    this.UserNameTextField.setText("");
+                    //this.UserNameTextField.setText("");
                     this.UserPassTextField.setText("");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "All fields are required");
+                JOptionPane.showMessageDialog(null, "All fields are required.");
 
             }
         } catch (Exception e) {
