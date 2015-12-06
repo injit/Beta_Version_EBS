@@ -2029,9 +2029,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         CategoryComboBox.setSelectedItem("Please Select...");
         
     }
-    private void testfucntion(){
-        
-    }
+
 
     private void populatependingContributedTable() {
         ResultSet rs = null;
