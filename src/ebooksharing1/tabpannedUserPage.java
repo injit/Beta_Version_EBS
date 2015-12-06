@@ -118,6 +118,8 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         coverpagepathprint = new javax.swing.JLabel();
         coverpagepathprintLabel = new javax.swing.JLabel();
         bookpathprintlabel = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        CategoryComboBox = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
@@ -297,7 +299,6 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
                                 .addComponent(Complaint)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel14)
@@ -344,8 +345,8 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                         .addComponent(UserNameComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel14)
                         .addComponent(sharingtimeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel21)
-                        .addComponent(Complaint)))
+                        .addComponent(jLabel21))
+                    .addComponent(Complaint))
                 .addGap(26, 26, 26)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -405,6 +406,10 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
         jLabel2.setText("Points deserve");
 
+        jLabel25.setText("Category");
+
+        CategoryComboBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -423,7 +428,8 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel2)
                             .addComponent(UploadcoverPageLabel)
-                            .addComponent(UploadBookLabel))
+                            .addComponent(UploadBookLabel)
+                            .addComponent(jLabel25))
                         .addGap(88, 88, 88)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
@@ -437,7 +443,8 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                             .addComponent(BookAuthorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(BookNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(pointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(pointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(CategoryComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(343, 343, 343)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 405, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -462,21 +469,28 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(BookAuthorTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(29, 29, 29)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(pointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2)))
-                            .addComponent(jLabel4))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(29, 29, 29)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(pointsTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2)))
+                    .addComponent(jLabel4))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(coverpagepathprintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(CategoryComboBox)
+                            .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BrowseCoverpageButton)
-                            .addComponent(coverpagepathprintLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(UploadcoverPageLabel))
+                            .addComponent(UploadcoverPageLabel))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -830,7 +844,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
+                        .addGap(60, 60, 60)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel6)
                             .addComponent(LastNameLabel)
@@ -840,11 +854,11 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                             .addComponent(jLabel22))
                         .addGap(66, 66, 66)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(PointEarnedTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
-                            .addComponent(BookGotRemovedTextfield)
-                            .addComponent(EmailTextField)
-                            .addComponent(LastNameTextField)
+                            .addComponent(LastNameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                             .addComponent(FNameTextField)
+                            .addComponent(EmailTextField)
+                            .addComponent(PointEarnedTextField)
+                            .addComponent(BookGotRemovedTextfield)
                             .addComponent(UserTypeTextField)))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
@@ -855,13 +869,13 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(61, 61, 61)
                         .addComponent(jLabel11)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(ReadBooksLabel)
                     .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel16))
-                .addContainerGap(52, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -892,13 +906,12 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(BookGotRemovedTextfield, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(UserTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                            .addComponent(jLabel22)
+                            .addComponent(UserTypeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 18, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -957,14 +970,14 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                 .addGap(0, 12, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(LogOutButton)
-                .addGap(18, 18, 18)
-                .addComponent(RefreshButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(UserNametobePosted, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
+                .addGap(112, 112, 112)
                 .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(RefreshButton)
+                .addGap(18, 18, 18)
+                .addComponent(LogOutButton)
+                .addGap(28, 28, 28))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1010,8 +1023,8 @@ public class tabpannedUserPage extends javax.swing.JFrame {
     private void BookSubmitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BookSubmitButtonActionPerformed
         // TODO add your handling code here:
         submit();
-        clearTextField();
-
+        //clearTextField();
+        populatependingContributedTable();
 
     }//GEN-LAST:event_BookSubmitButtonActionPerformed
 
@@ -1032,16 +1045,17 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         //String Uploadtext = BookSummaryTextArea.getText();
         //String uploader_name = UploaderNameTextField.getText();
         String requestedPoints = pointsTextField.getText();
+        String b_category = (String) CategoryComboBox.getSelectedItem();
 
         try {
 
-            if (!B_name.isEmpty() && !A_name.isEmpty() && !B_summary.isEmpty() && !Cover_filepath.isEmpty() && !Book_filepath.isEmpty() && !requestedPoints.isEmpty()) // && !uploader_name.isEmpty()
+            if (!B_name.isEmpty() && !A_name.isEmpty() && !B_summary.isEmpty() && !Cover_filepath.isEmpty() && !Book_filepath.isEmpty() && !requestedPoints.isEmpty() && !b_category.equals("Please Select...")) // && !uploader_name.isEmpty()
             {
                 DbConnector dbc = new DbConnector();
                 Connection conn = dbc.Connects();
 
-                String sql = "INSERT INTO PendingBook (uploader, bookname, cover, author, summary, bookfile,  request_points, granted_points) "
-                        + "VALUES (?, ?, ?, ?, ?, ?, ?, " + 0 + ")";
+                String sql = "INSERT INTO PendingBook (uploader, bookname, cover, author, summary, bookfile,  request_points, category, granted_points) "
+                        + "VALUES (?, ?, ?, ?, ?, ?, ?, ?," + 0 + ")";
 
                 PreparedStatement stmt = conn.prepareStatement(sql);
                 //stmt.setString(1, uploader_name);
@@ -1057,6 +1071,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                 stmt.setBinaryStream(6, Book, (int) Book_image.length());
                 int point = Integer.parseInt(requestedPoints);
                 stmt.setInt(7, point);
+                stmt.setString(8, b_category);
 
                 Statement User_Stmt = conn.createStatement();
                 String User_query = "Select bookname, author, uploader from PendingBook";
@@ -1132,14 +1147,10 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
             DbConnector dbc = new DbConnector();
             Connection conn = dbc.Connects();
-            //int row = SentMessageTable.getSelectedRow();
-            //int rowNum = (int) SentMessageTable.getModel().getValueAt(row, 0);
             String sql = "SELECT POINT_BALANCE FROM UserInfo  WHERE username = ?";
             PreparedStatement pst = conn.prepareStatement(sql);
             pst.setString(1, username);
             ResultSet rs = pst.executeQuery();
-            //JFrame frame = new JFrame("Purchase Time for the Book");
-            //String time = JOptionPane.showInputDialog(frame, "For how long would you rent the book? (in seconds)");
             int user_points = 0;
             int book_points = 0;
 
@@ -1164,6 +1175,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
                 statement.setString(2, username);
                 statement.executeUpdate();
+
                 String sql7 = "SELECT READING_COUNTS FROM BOOKINFO where BOOKID = ?";
                 PreparedStatement pst7 = conn.prepareStatement(sql7);
                 pst7.setInt(1, bid);
@@ -1236,6 +1248,8 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No book selected");
         }
+        populateUserDetails();
+        populateReadBookTable();
 
     }
 
@@ -1327,11 +1341,6 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
     private void RateSelectedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RateSelectedBookButtonActionPerformed
         // TODO add your handling code here:
-
-        /*
-         public ImageIcon getImage(){
-         return new ImageIcon(new ImageIcon(cover).getImage().getScaledInstance(100, 150, java.awt.Image.SCALE_SMOOTH));}
-         */
         int row = jTable1.getSelectedRow();
         if (row != -1) {
             int bid = (int) jTable1.getModel().getValueAt(row, 0);
@@ -1339,14 +1348,15 @@ public class tabpannedUserPage extends javax.swing.JFrame {
             if (readduration > 0) {
                 ReviewRateFrame bo = new ReviewRateFrame(bid, username);
                 bo.setVisible(true);
+
             } else {
                 JOptionPane.showMessageDialog(null, "You haven't read this book yet!", "warning", JOptionPane.WARNING_MESSAGE);
             }
 
         } else {
-            JOptionPane.showMessageDialog(null, "No book selected");
+            JOptionPane.showMessageDialog(null, "No book selected", "warning", JOptionPane.WARNING_MESSAGE);
         }
-
+        //populateReviewtable();
     }//GEN-LAST:event_RateSelectedBookButtonActionPerformed
 
 
@@ -1422,14 +1432,10 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         String message = MessageTextArea.getText();
         DbConnector dbc = new DbConnector();
         Connection conn = dbc.Connects();
-
-        //int row = jTable1.getSelectedRow();
-        //int rowNum = (int) jTable1.getModel().getValueAt(row, 0);
         String Sql = "INSERT INTO Message (Sender, Receiver, message_txt) "
                 + "VALUES (?, ?, ?)";
         try {
             PreparedStatement stmt = conn.prepareStatement(Sql);
-            //stmt.setString(1, uploader_name);
             if (receiver.equals("Please Select...") || message.isEmpty() || message.equals("Write your message here")) {
                 JOptionPane.showMessageDialog(null, "Please Check the fields", "Input Error!", JOptionPane.WARNING_MESSAGE);
             } else {
@@ -1437,10 +1443,10 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                 stmt.setString(2, receiver);
                 stmt.setString(3, message);
                 stmt.execute();
+                populateSentMessageTable();
                 MessageTextArea.setText("");
                 jComboBox1.setSelectedItem("Please Select...");
                 JOptionPane.showMessageDialog(null, "Message sent");
-
                 conn.commit();
                 conn.close();
             }
@@ -1464,13 +1470,14 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                 int bid = (int) jTable1.getModel().getValueAt(row, 0);
                 InserttoInvitationTable(user, bid, stime);
                 JOptionPane.showMessageDialog(null, "Invitation sent to " + user);
+                populateInvitationSentTable();
+
             } else {
                 JOptionPane.showMessageDialog(null, "Seems like you don't have enough points to share.", "Warning", JOptionPane.WARNING_MESSAGE);
 
             }
             sharingtimeTextField.setText("");
             UserNameComboBox.setSelectedItem("Please Select...");
-            //JOptionPane.showMessageDialog(null, "user: " + user + ",  bid: " + bid + ", time sharing: " + stime);
         } else {
             JOptionPane.showMessageDialog(null, "Please select the valid user and fill out the time you want to share.\nSelect the book.");
         }
@@ -1527,7 +1534,6 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         String invited_User = "";
         int bid = 0;
         int stime = 0;
-
         String status = "";
         int rowNum = 0;
         DbConnector dbc = new DbConnector();
@@ -1551,18 +1557,17 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                     status = rs.getString("status");
 
                 }
-
+                conn.close();
             } catch (SQLException ex) {
                 Logger.getLogger(tabpannedUserPage.class.getName()).log(Level.SEVERE, null, ex);
             }
             // } 
             if (status.equals("Accepted")) {
-                JOptionPane.showMessageDialog(null, "You can't accept.");
+                JOptionPane.showMessageDialog(null, "You can't accept twice.");
             } else {
 
                 try {
                     deduct_points_of_inviter(inviting_User, stime, bid);
-
                     update_shared_book_status_in_invitation_table(rowNum);
                     populateInvitationReceivedTable();
                     JOptionPane.showMessageDialog(null, "Book has been accepted");
@@ -1570,11 +1575,9 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                     Logger.getLogger(tabpannedUserPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+
         } else {
-//            int row2 = InvitationSentTable.getSelectedRow();
-//            int rowNum = (int) InvitationSentTable.getModel().getValueAt(row2, 0);
             JOptionPane.showMessageDialog(null, "Please select the book first.");
-            //work_on_InvitationTable(rowNum);
         }
 
 
@@ -1788,8 +1791,17 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
         jComboBox1.removeAllItems();
         UserNameComboBox.removeAllItems();
+        CategoryComboBox.removeAllItems();
         jComboBox1.addItem("Please Select...");
         UserNameComboBox.addItem("Please Select...");
+        CategoryComboBox.addItem("Please Select...");
+        CategoryComboBox.addItem("TextBook");
+        CategoryComboBox.addItem("Novel");
+        CategoryComboBox.addItem("Documentary");
+        CategoryComboBox.addItem("SciFi");
+        CategoryComboBox.addItem("Story");
+        CategoryComboBox.addItem("Literature");
+        
 
         try {
             DbConnector dbc = new DbConnector();
@@ -1876,20 +1888,11 @@ public class tabpannedUserPage extends javax.swing.JFrame {
             DbConnector dbc = new DbConnector();
             Connection conn = dbc.Connects();
             //int row = jTable1.getSelectedRow();
-            //int rowNum = (int) jTable1.getModel().getValueAt(row, 0);
-            String Sql = "Select IID AS IID, invitee AS You_Invited,Bookid AS BOOK_ID, sharing_points AS SharedTime, status AS Shared_Status FROM INVITATION WHERE inviter = ?";
+            //int rowNum = (int) jTable1.getModel().getValueAt(row, 0);IID AS IID,
+            String Sql = "Select invitee AS You_Invited,Bookid AS BOOK_ID, sharing_points AS SharedTime, status AS Shared_Status FROM INVITATION WHERE inviter = ?";
             pst = conn.prepareStatement(Sql);
             pst.setString(1, username);
             rs = pst.executeQuery();
-//            while (rs.next()) {
-//                if (rs.getBoolean("Shared_Status")) {
-//                    rs.toString().replace("true", "Accepted");
-//                    //rs.("Shared_Status", "Accepted");
-//                }else{
-//                    rs.toString().replace("false", "Declined");
-//                }
-//                    
-//            }
             InvitationSentTable.setModel(DbUtils.resultSetToTableModel(rs));
             InvitationSentTable.setEnabled(false);
             conn.close();
@@ -1931,6 +1934,8 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         pointsTextField.setText("");
         coverpagepathprintLabel.setText("");
         bookpathprintlabel.setText("");
+        CategoryComboBox.setSelectedItem("Please Select...");
+        
     }
 
     private void populatependingContributedTable() {
@@ -2051,6 +2056,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
     private javax.swing.JLabel BooksListLabel;
     private javax.swing.JButton BrowseCoverpageButton;
     private javax.swing.JButton CancelButton;
+    private javax.swing.JComboBox CategoryComboBox;
     private javax.swing.JButton ClearMessage;
     private javax.swing.JButton Complaint;
     private javax.swing.JButton DeclineInvitationButton;
@@ -2106,6 +2112,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

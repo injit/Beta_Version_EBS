@@ -28,6 +28,7 @@ public class ReviewRateFrame extends javax.swing.JFrame {
      */
     private static int bookid;
     private static String username;
+    private String bName = "";
 
     public ReviewRateFrame(int bookid, String username) {
         super("Rate and Review");
@@ -58,6 +59,7 @@ public class ReviewRateFrame extends javax.swing.JFrame {
         CoverLabel = new javax.swing.JLabel();
         SubmitRatingReviewButton = new javax.swing.JButton();
         ExitButton = new javax.swing.JButton();
+        BookNameLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -88,6 +90,9 @@ public class ReviewRateFrame extends javax.swing.JFrame {
             }
         });
 
+        BookNameLabel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        BookNameLabel.setText("BookName");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,19 +100,24 @@ public class ReviewRateFrame extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(ExitButton)
-                        .addGap(39, 39, 39))
+                    .addComponent(ReviewRateLabel)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(ReviewRateLabel)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(CoverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(19, 19, 19)
+                                .addComponent(BookNameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(CoverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(201, 201, 201)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(RatingLabel)
-                                    .addComponent(ReviewLabel))))
-                        .addGap(38, 38, 38)))
+                                    .addComponent(ReviewLabel)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(206, 206, 206)
+                                .addComponent(ExitButton)
+                                .addGap(1, 1, 1)))))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(SubmitRatingReviewButton)
                     .addComponent(RateTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -132,11 +142,16 @@ public class ReviewRateFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(CoverLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(SubmitRatingReviewButton)
-                    .addComponent(ExitButton))
-                .addContainerGap(198, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(SubmitRatingReviewButton)
+                            .addComponent(ExitButton)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(BookNameLabel)))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,24 +205,14 @@ public class ReviewRateFrame extends javax.swing.JFrame {
                 new_rating_count = rating_count + 1;
                 new_rating = ((rating * rating_count) + rate) / new_rating_count;
                 update_rating_rating_count(new_rating_count, new_rating);
-//                String BookInfosqlinsert = "UPDATE BOOKINFO SET rating = ?, rating_counts = ? WHERE BOOKID =?";
-//                PreparedStatement BookInfosqlinsertstmt = conn.prepareStatement(BookInfosqlinsert);
-//                BookInfosqlinsertstmt.setInt(1, new_rating);
-//                BookInfosqlinsertstmt.setInt(2, new_rating_count);
-//                BookInfosqlinsertstmt.setInt(3, bookid);
-//                BookInfosqlinsertstmt.executeUpdate();
-
                 String sql = "INSERT INTO REVIEW_RATING (BookID, Username, review_text, rating) "
                         + "VALUES (?, ?, ?, ?)";
                 PreparedStatement stmt = conn.prepareStatement(sql);
-                //stmt.setString(1, uploader_name);
                 stmt.setInt(1, bookid);
                 stmt.setString(2, username);
                 stmt.setString(3, review);
                 stmt.setInt(4, rate);
-
                 stmt.execute();
-
                 conn.commit();
                 conn.close();
                 JOptionPane.showMessageDialog(null, "Rating and Review submission succcessful.");
@@ -228,10 +233,11 @@ public class ReviewRateFrame extends javax.swing.JFrame {
         ResultSet rs = null;
         PreparedStatement pst = null;
         Blob image = null;
+        
         byte[] imgData = null;
         DbConnector dbc = new DbConnector();
         Connection conn = dbc.Connects();
-        String sql = "SELECT cover FROM bookinfo  where bookid = ?";
+        String sql = "SELECT bookname, cover FROM bookinfo  where bookid = ?";
         try {
             pst = conn.prepareStatement(sql);
             pst.setInt(1, bookid);
@@ -239,6 +245,7 @@ public class ReviewRateFrame extends javax.swing.JFrame {
             while (rs.next()) {
                 image = rs.getBlob("Cover");
                 imgData = image.getBytes(1, (int) image.length());
+                bName = rs.getString("BookName");
             }
 
         } catch (Exception e) {
@@ -250,6 +257,7 @@ public class ReviewRateFrame extends javax.swing.JFrame {
 
     private void display_bookImage() {
         CoverLabel.setIcon(getImage());
+        BookNameLabel.setText(bName);
     }
 
     private void update_rating_rating_count(int new_rating_count, int new_rating) {
@@ -306,6 +314,7 @@ public class ReviewRateFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel BookNameLabel;
     private javax.swing.JLabel CoverLabel;
     private javax.swing.JButton ExitButton;
     private javax.swing.JTextField RateTextField;

@@ -56,13 +56,13 @@ public class tabpannedAH extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        FirstNameTextField = new javax.swing.JTextField();
         LastNameTextField = new javax.swing.JTextField();
         EmailTextField = new javax.swing.JTextField();
         UserNameTextField = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jRadioButton4 = new javax.swing.JRadioButton();
+        FirstNameTextField = new javax.swing.JTextField();
         CancelButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -83,7 +83,7 @@ public class tabpannedAH extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ebooksharing1/banner3.jpg"))); // NOI18N
 
-        login.setBackground(new java.awt.Color(0, 204, 0));
+        login.setBackground(new java.awt.Color(204, 204, 204));
         login.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         login.setPreferredSize(new java.awt.Dimension(963, 920));
 
@@ -144,7 +144,7 @@ public class tabpannedAH extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Login", login);
 
-        registration.setBackground(new java.awt.Color(0, 204, 0));
+        registration.setBackground(new java.awt.Color(204, 204, 204));
         registration.setToolTipText("");
         registration.setPreferredSize(new java.awt.Dimension(970, 920));
 
@@ -192,9 +192,9 @@ public class tabpannedAH extends javax.swing.JFrame {
                     .addComponent(UserNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(LastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(FirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRadioButton3)
-                    .addComponent(jRadioButton4))
+                    .addComponent(jRadioButton4)
+                    .addComponent(FirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(146, 146, 146))
             .addGroup(registrationLayout.createSequentialGroup()
                 .addGap(142, 142, 142)
@@ -212,18 +212,18 @@ public class tabpannedAH extends javax.swing.JFrame {
                 .addGroup(registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(PasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(LastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                .addGap(12, 12, 12)
+                .addGroup(registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(FirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(6, 6, 6)
+                .addGroup(registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(LastNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(FirstNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(EmailTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(registrationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton3)
@@ -232,7 +232,7 @@ public class tabpannedAH extends javax.swing.JFrame {
                 .addComponent(jRadioButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RegisterButton)
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(7, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Registration", registration);
@@ -447,7 +447,7 @@ VALUES
             ResultSet User_result = User_Stmt.executeQuery(User_query);
             boolean checkmatch = false;
             boolean SuperUserType = false;
-            boolean UserType = false;
+            boolean blacklisted = false;
 
             String usernametogui = "";
             String firstNametogui = "";
@@ -461,6 +461,7 @@ VALUES
                         usernametogui = User_result.getString("userName"); 
                         firstNametogui = User_result.getString("firstName"); 
                         SuperUserType = User_result.getBoolean("is_SU");
+                        blacklisted = User_result.getBoolean("in_blacklist");
                     }
 
                 }
@@ -472,14 +473,15 @@ VALUES
                         //RegUserPage rup = new RegUserPage("SuperUser", usernametogui);
                         SuperUserFrame rup = new SuperUserFrame(usernametogui, firstNametogui);
                         rup.setVisible(true);
-                    } else if (!SuperUserType) {
+                    } else if (!SuperUserType && !blacklisted) {
                         //JOptionPane.showMessageDialog(null, "You are logged in as registered user.");
                         cancel();
                         //RegUserPage rup = new RegUserPage("Register User", usernametogui);
                         tabpannedUserPage rup = new tabpannedUserPage("User", firstNametogui, usernametogui);
                         rup.setVisible(true);
                     } else {
-                        cancel();
+                        JOptionPane.showMessageDialog(null, "You are blacklisted, can't login.", "warning", JOptionPane.WARNING_MESSAGE);
+                        //cancel();
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Invalid creditials, Try again.");
