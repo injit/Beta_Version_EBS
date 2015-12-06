@@ -19,12 +19,6 @@ import net.proteanit.sql.DbUtils;
  */
 public class VisitorPage extends javax.swing.JFrame {
 
-    /**
-     * Creates new form RegUserPage
-     */
-//    public RegUserPage() {
-//        initComponents();
-//    }
     private static String username = "";
     private static String status = "";
 
@@ -68,6 +62,8 @@ public class VisitorPage extends javax.swing.JFrame {
         SummaryTextArea = new javax.swing.JTextArea();
         jScrollPane6 = new javax.swing.JScrollPane();
         ReviewDisplayTable = new javax.swing.JTable();
+        BackButton = new javax.swing.JButton();
+        Complaint = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -126,6 +122,11 @@ public class VisitorPage extends javax.swing.JFrame {
                 jTable1MouseClicked(evt);
             }
         });
+        jTable1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable1KeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jLabel12.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -165,32 +166,43 @@ public class VisitorPage extends javax.swing.JFrame {
         ));
         jScrollPane6.setViewportView(ReviewDisplayTable);
 
+        BackButton.setText("Back");
+        BackButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BackButtonActionPerformed(evt);
+            }
+        });
+
+        Complaint.setText("Complaint");
+        Complaint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ComplaintActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(37, 939, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(UserNametobePosted, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(BackButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(UserNametobePosted, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(StatusLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(34, 34, 34))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(BooksListLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel13)
                         .addGap(101, 101, 101))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel12)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 889, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Complaint))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -201,13 +213,20 @@ public class VisitorPage extends javax.swing.JFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(RateSelectedBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(ReadSelectedBookButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addContainerGap(41, Short.MAX_VALUE))))))
+                                .addContainerGap(41, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 1107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel12))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(UserNametobePosted)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(UserNametobePosted)
+                    .addComponent(BackButton))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(StatusLabel)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -224,12 +243,14 @@ public class VisitorPage extends javax.swing.JFrame {
                         .addGap(5, 5, 5)
                         .addComponent(BooksListLabel)
                         .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Complaint)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(471, 471, 471))
+                .addGap(353, 353, 353))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -267,7 +288,7 @@ public class VisitorPage extends javax.swing.JFrame {
 
     private void RateSelectedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RateSelectedBookButtonActionPerformed
         // TODO add your handling code here:
-         JOptionPane.showMessageDialog(null, "Sorry, You have no access!");
+        JOptionPane.showMessageDialog(null, "Sorry, You have no access!");
     }//GEN-LAST:event_RateSelectedBookButtonActionPerformed
 
     private void ReadSelectedBookButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReadSelectedBookButtonActionPerformed
@@ -275,9 +296,27 @@ public class VisitorPage extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Sorry, You have no access!");
     }//GEN-LAST:event_ReadSelectedBookButtonActionPerformed
 
+    private void BackButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackButtonActionPerformed
+        // TODO add your handling code here:
+        tabpannedAH tUp = new tabpannedAH();
+        tUp.setVisible(true);
+        cancel();
+    }//GEN-LAST:event_BackButtonActionPerformed
+
+    private void ComplaintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ComplaintActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Sorry, You have no access!");
+
+    }//GEN-LAST:event_ComplaintActionPerformed
+
+    private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
+        // TODO add your handling code here:
+        //displaySummary();
+        books_row_detail();
+        populateReviewtable();
+    }//GEN-LAST:event_jTable1KeyReleased
+
     //Helper functions
-
-
     private void populateReviewtable() {
         ResultSet rs = null;
         PreparedStatement pst = null;
@@ -326,20 +365,6 @@ public class VisitorPage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, e);
         }
     }
-    /*
-     DbConnector dbc = new DbConnector();
-     Connection conn = dbc.Connects();
-        
-     try{
-     String qry = "Select cover, bookName, author, summary from BookInfo";
-     PreparedStatement stmt = conn.prepareStatement(qry);
-     ResultSet rs = stmt.executeQuery();
-     Table.setModel(DbUtils.resultSetToTableModel(rs));
-            
-     }catch(Exception e){
-     e.printStackTrace();
-     }
-     */
 
     /**
      * @param args the command line arguments
@@ -382,7 +407,9 @@ public class VisitorPage extends javax.swing.JFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BackButton;
     private javax.swing.JLabel BooksListLabel;
+    private javax.swing.JButton Complaint;
     private javax.swing.JButton RateSelectedBookButton;
     private javax.swing.JButton ReadSelectedBookButton;
     private javax.swing.JTable ReviewDisplayTable;
