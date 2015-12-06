@@ -1648,7 +1648,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         displaySummary();
         populateReviewtable();
-        
+
     }//GEN-LAST:event_jTable1KeyReleased
 
 //Helper functions
@@ -1811,7 +1811,6 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         CategoryComboBox.addItem("SciFi");
         CategoryComboBox.addItem("Story");
         CategoryComboBox.addItem("Literature");
-        
 
         try {
             DbConnector dbc = new DbConnector();
@@ -1938,16 +1937,15 @@ public class tabpannedUserPage extends javax.swing.JFrame {
     }
 
     private void clearTextField() {
-        BookNameTextField.setText("");
-        BookAuthorTextField.setText("");
         BookSummaryTextArea.setText("");
         pointsTextField.setText("");
         coverpagepathprintLabel.setText("");
+        BookNameTextField.setText("");
+        BookAuthorTextField.setText("");
         bookpathprintlabel.setText("");
         CategoryComboBox.setSelectedItem("Please Select...");
-        
-    }
 
+    }
 
     private void populatependingContributedTable() {
         ResultSet rs = null;
