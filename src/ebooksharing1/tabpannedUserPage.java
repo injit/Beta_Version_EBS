@@ -1178,10 +1178,10 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
                 statement.setString(2, username);
                 statement.executeUpdate();
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
 
->>>>>>> ebs/indrajit
+//>>>>>>> ebs/indrajit
                 String sql7 = "SELECT READING_COUNTS FROM BOOKINFO where BOOKID = ?";
                 PreparedStatement pst7 = conn.prepareStatement(sql7);
                 pst7.setInt(1, bid);
@@ -1189,7 +1189,43 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                 int reading_count = 0;
                 while (rs.next()) {
                     reading_count = rs7.getInt("READING_COUTNS");
-<<<<<<< HEAD
+//<<<<<<< HEAD
+//
+//                }
+//                reading_count++;
+//
+//                String sql8 = "UPDATE BOOKINFO SET READING_COUNTS = ? WHERE BOOKID = ?";
+//                PreparedStatement pst8 = conn.prepareStatement(sql8);
+//                pst8.setInt(1, reading_count++);
+//                pst8.setInt(2, bid);
+//                pst8.executeUpdate();
+//
+//                Date date = new Date();//Calendar.getInstance().getTime();
+//                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//                String sql0 = "UPDATE BOOKINFO SET LAST_DATE_READ = ? WHERE BOOKID = ? ";
+//                PreparedStatement st = conn.prepareStatement(sql0);
+//                st.setDate(1, sqlDate);
+//                st.setInt(2, bid);
+//                st.executeUpdate();
+//
+//                BookOpened bo = new BookOpened(bid, time_purchased);
+//                bo.setVisible(true);
+//
+//                String sql5 = "SELECT READING_DURATION FROM READINGHISTORY WHERE USERNAME = ? AND BOOKID = ?";
+//                PreparedStatement statement1 = conn.prepareStatement(sql5);
+//                statement1.setString(1, username);
+//                statement1.setInt(2, bid);
+//
+//                ResultSet rs1 = statement1.executeQuery();
+//                if (rs1.next() == false) {
+//                    String sql6 = "INSERT INTO READINGHISTORY (USERNAME, BOOKID) VALUES (?, ?)";
+//                    PreparedStatement pst6 = conn.prepareStatement(sql6);
+//                    pst6.setString(1, username);
+//                    pst6.setInt(2, bid);
+//                    pst6.execute();
+//
+//                }
+//=======
 
                 }
                 reading_count++;
@@ -1225,43 +1261,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                     pst6.execute();
 
                 }
-=======
-
-                }
-                reading_count++;
-
-                String sql8 = "UPDATE BOOKINFO SET READING_COUNTS = ? WHERE BOOKID = ?";
-                PreparedStatement pst8 = conn.prepareStatement(sql8);
-                pst8.setInt(1, reading_count++);
-                pst8.setInt(2, bid);
-                pst8.executeUpdate();
-
-                Date date = new Date();//Calendar.getInstance().getTime();
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                String sql0 = "UPDATE BOOKINFO SET LAST_DATE_READ = ? WHERE BOOKID = ? ";
-                PreparedStatement st = conn.prepareStatement(sql0);
-                st.setDate(1, sqlDate);
-                st.setInt(2, bid);
-                st.executeUpdate();
-
-                BookOpened bo = new BookOpened(bid, time_purchased);
-                bo.setVisible(true);
-
-                String sql5 = "SELECT READING_DURATION FROM READINGHISTORY WHERE USERNAME = ? AND BOOKID = ?";
-                PreparedStatement statement1 = conn.prepareStatement(sql5);
-                statement1.setString(1, username);
-                statement1.setInt(2, bid);
-
-                ResultSet rs1 = statement1.executeQuery();
-                if (rs1.next() == false) {
-                    String sql6 = "INSERT INTO READINGHISTORY (USERNAME, BOOKID) VALUES (?, ?)";
-                    PreparedStatement pst6 = conn.prepareStatement(sql6);
-                    pst6.setString(1, username);
-                    pst6.setInt(2, bid);
-                    pst6.execute();
-
-                }
->>>>>>> ebs/indrajit
+//>>>>>>> ebs/indrajit
 
             } else {
                 JOptionPane.showMessageDialog(null, "Not enough points");
@@ -1292,11 +1292,11 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(null, "No book selected");
         }
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
         populateUserDetails();
         populateReadBookTable();
->>>>>>> ebs/indrajit
+//>>>>>>> ebs/indrajit
 
     }
 
@@ -1610,19 +1610,19 @@ public class tabpannedUserPage extends javax.swing.JFrame {
             }
             // } 
             if (status.equals("Accepted")) {
-<<<<<<< HEAD
-                JOptionPane.showMessageDialog(null, "You can't accept.");
-=======
+//<<<<<<< HEAD
+//                JOptionPane.showMessageDialog(null, "You can't accept.");
+//=======
                 JOptionPane.showMessageDialog(null, "You can't accept twice.");
->>>>>>> ebs/indrajit
+//>>>>>>> ebs/indrajit
             } else {
 
                 try {
                     deduct_points_of_inviter(inviting_User, stime, bid);
-<<<<<<< HEAD
-
-=======
->>>>>>> ebs/indrajit
+//<<<<<<< HEAD
+//
+//=======
+//>>>>>>> ebs/indrajit
                     update_shared_book_status_in_invitation_table(rowNum);
                     populateInvitationReceivedTable();
                     JOptionPane.showMessageDialog(null, "Book has been accepted");
@@ -1640,21 +1640,21 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
     private void DeclineInvitationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DeclineInvitationButtonActionPerformed
         // TODO add your handling code here:
-<<<<<<< HEAD
-        int dialogResult = JOptionPane.showConfirmDialog(null, "Selecting Yes will delete the invitation from the list.\nDo you still want to decline the Invitation?", "Confirmation", JOptionPane.YES_NO_OPTION);
-        if (dialogResult == JOptionPane.YES_OPTION) {
-            ResultSet rs = null;
-            String status = "";
-            int rowNum = 0;
-            DbConnector dbc = new DbConnector();
-            Connection conn = dbc.Connects();
-
-            int row = InvitationReceivedTable.getSelectedRow();
-
-            if (row != -1) {
-                try {
-                    rowNum = (int) InvitationReceivedTable.getModel().getValueAt(row, 0);
-=======
+//<<<<<<< HEAD
+//        int dialogResult = JOptionPane.showConfirmDialog(null, "Selecting Yes will delete the invitation from the list.\nDo you still want to decline the Invitation?", "Confirmation", JOptionPane.YES_NO_OPTION);
+//        if (dialogResult == JOptionPane.YES_OPTION) {
+//            ResultSet rs = null;
+//            String status = "";
+//            int rowNum = 0;
+//            DbConnector dbc = new DbConnector();
+//            Connection conn = dbc.Connects();
+//
+//            int row = InvitationReceivedTable.getSelectedRow();
+//
+//            if (row != -1) {
+//                try {
+//                    rowNum = (int) InvitationReceivedTable.getModel().getValueAt(row, 0);
+//=======
         int row = InvitationReceivedTable.getSelectedRow();
         int rowNum = 0;
 
@@ -1670,7 +1670,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
                 try {
 
->>>>>>> ebs/indrajit
+//>>>>>>> ebs/indrajit
                     String get_pendingsql = "SELECT Status FROM Invitation WHERE IID= ?";
                     PreparedStatement ps = conn.prepareStatement(get_pendingsql);
                     ps.setInt(1, rowNum);
@@ -1685,29 +1685,29 @@ public class tabpannedUserPage extends javax.swing.JFrame {
                         ps1.setInt(1, rowNum);
                         ps1.executeUpdate();
                         populateInvitationReceivedTable();
-<<<<<<< HEAD
-                        
-                    }else{
-                        JOptionPane.showMessageDialog(null, "Deletion of Accepted book is currently disabled.");
-                    }
-                    
-=======
+//<<<<<<< HEAD
+//                        
+//                    }else{
+//                        JOptionPane.showMessageDialog(null, "Deletion of Accepted book is currently disabled.");
+//                    }
+//                    
+//=======
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Deletion of Accepted book is currently disabled.");
                     }
 
->>>>>>> ebs/indrajit
+//>>>>>>> ebs/indrajit
                 } catch (SQLException ex) {
                     Logger.getLogger(tabpannedUserPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             }
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
         } else {
             JOptionPane.showMessageDialog(null, "Please select the book first.");
->>>>>>> ebs/indrajit
+//>>>>>>> ebs/indrajit
         }
     }//GEN-LAST:event_DeclineInvitationButtonActionPerformed
 
@@ -1723,8 +1723,8 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_ComplaintActionPerformed
 
-<<<<<<< HEAD
-=======
+//<<<<<<< HEAD
+//=======
     private void jTable1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyReleased
         // TODO add your handling code here:
         displaySummary();
@@ -1732,7 +1732,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTable1KeyReleased
 
->>>>>>> ebs/indrajit
+//>>>>>>> ebs/indrajit
 //Helper functions
     private void deduct_points_of_inviter(String inviter, int sharing_time, int bid) throws SQLException {
         int new_point_balance = 0;
