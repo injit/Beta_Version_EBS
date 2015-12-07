@@ -58,6 +58,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
         populateInvitationSentTable();
         populateInvitationReceivedTable();
         populateReadBookTable();
+        //populateReviewtable();
     }
 
     private void setgreetings() {
@@ -1351,7 +1352,7 @@ public class tabpannedUserPage extends javax.swing.JFrame {
             if (readduration > 0) {
                 ReviewRateFrame bo = new ReviewRateFrame(bid, username);
                 bo.setVisible(true);
-
+                populateReviewtable();
             } else {
                 JOptionPane.showMessageDialog(null, "You haven't read this book yet!", "warning", JOptionPane.WARNING_MESSAGE);
             }
