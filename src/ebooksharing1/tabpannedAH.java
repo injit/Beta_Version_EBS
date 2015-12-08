@@ -350,65 +350,77 @@ public class tabpannedAH extends javax.swing.JFrame {
 
             //            Class.forName("org.apache.derby.jdbc.ClientDriver");
             //            conn = DriverManager.getConnection("jdbc:derby://localhost:1527/UsersRegistration", "java", "java");
-            Statement stmt = conn.createStatement();
+            //Statement stmt = conn.createStatement();
             Statement UserNameStmt = conn.createStatement();
             String UserN_query = "Select * from UserInfo";
             ResultSet UserN_result = UserNameStmt.executeQuery(UserN_query);
-            boolean checkUserName = false;
-            boolean checkemail = false;
+            boolean checkUserNameexist = false;
+            boolean checkemailexist = false;
             while (UserN_result.next()) {
                 String UN = UserN_result.getString("UserName");
                 String Uemail = UserN_result.getString("email");
                 if (UN.equalsIgnoreCase(U_name)) {
-                    checkUserName = true;
+                    checkUserNameexist = true;
                 }
                 if (Uemail.equalsIgnoreCase(E_add) || E_add.equalsIgnoreCase("abc@example.com")) {
-                    checkemail = true;
+                    checkemailexist = true;
                 }
 
             }
+            Statement UserEmailStmt = conn.createStatement();
+            String UserEmail_query = "SELECT email From BLACKLIST";
+            ResultSet UserEmail_rs = UserEmailStmt.executeQuery(UserEmail_query);
+            boolean BlackListedEmailFound = false;
+            while (UserEmail_rs.next()) {
+                if (UserEmail_rs.getString("email").equalsIgnoreCase(E_add)) {
+                    BlackListedEmailFound = true;
+                }
+            }
             if (!U_name.isEmpty() && !P_word.isEmpty() && !F_name.isEmpty() && !L_name.isEmpty() && !E_add.isEmpty() && (jRadioButton3.isSelected() || jRadioButton4.isSelected())) {
-                if (!checkUserName) {
-                    if (!checkemail) {
-                        String query = "Insert Into UserInfo (username,password,email,firstname,lastname,point_balance,is_SU) Values ('" + U_name + "','" + P_word + "','" + E_add + "','" + F_name + "','" + L_name + "'," + 0 + "," + result + ")";
+                if (!checkUserNameexist) {
+                    if (!checkemailexist) {
+                        if (!BlackListedEmailFound) {
+                            String query = "Insert Into UserInfo (username,password,email,firstname,lastname,point_balance,is_SU) Values ('" + U_name + "','" + P_word + "','" + E_add + "','" + F_name + "','" + L_name + "'," + 0 + "," + result + ")";
                     //"//," + 0+")";//,'" +0+"')";
 
-                        //if (!U_name.isEmpty() && !P_word.isEmpty() && !F_name.isEmpty() && !L_name.isEmpty() && !E_add.isEmpty() && (jRadioButton3.isSelected() || jRadioButton4.isSelected())) {
-                        if (jRadioButton3.isSelected())// && jRadioButton3.getText().equals("Super User"))
-                        {
-                            String input = JOptionPane.showInputDialog(null, "Enter Your Access code:", "Verification", JOptionPane.OK_OPTION);
-                            if (input != null) {
+                            //if (!U_name.isEmpty() && !P_word.isEmpty() && !F_name.isEmpty() && !L_name.isEmpty() && !E_add.isEmpty() && (jRadioButton3.isSelected() || jRadioButton4.isSelected())) {
+                            if (jRadioButton3.isSelected())// && jRadioButton3.getText().equals("Super User"))
+                            {
+                                String input = JOptionPane.showInputDialog(null, "Enter Your Access code:", "Verification", JOptionPane.OK_OPTION);
+                                if (input != null) {
 
-                                if (input.equalsIgnoreCase("Access"))//This is a hard coded Access code for Super User registration
-                                {
-                                    JOptionPane.showMessageDialog(null, "Congratulations! Access granted, You have now Super User privilege.");
-                                    stmt.executeUpdate(query);
-                                    conn.close();
-                                    cancel();
-                                    GreetingPage gp = new GreetingPage();
-                                    gp.setVisible(true);
-                                } else {
-                                    //final JPanel jp = new JPanel();
-                                    JOptionPane.showMessageDialog(null, "your access code is wrong !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+                                    if (input.equalsIgnoreCase("Access"))//This is a hard coded Access code for Super User registration
+                                    {
+                                        JOptionPane.showMessageDialog(null, "Congratulations! Access granted, You have now Super User privilege.");
+                                        //stmt.executeUpdate(query);
+                                        UserNameStmt.executeUpdate(query);
+                                        conn.close();
+                                        cancel();
+                                        GreetingPage gp = new GreetingPage();
+                                        gp.setVisible(true);
+                                    } else {
+                                        //final JPanel jp = new JPanel();
+                                        JOptionPane.showMessageDialog(null, "your access code is wrong !!!", "Warning", JOptionPane.WARNING_MESSAGE);
+                                    }
                                 }
-                            }
 //                            } else {
 //                                //final JPanel jp = new JPanel();
 //                                JOptionPane.showMessageDialog(null, "you clicked cancel !!! Try again", "Cancelled", JOptionPane.WARNING_MESSAGE);
 //                            }
+                            } else {
+
+                                //stmt.executeUpdate(query);
+                                UserNameStmt.executeUpdate(query);
+                                conn.close();
+                                //JOptionPane.showMessageDialog(null, "Congratulations, You are now Registered User.");
+                                GreetingPage gp = new GreetingPage();
+                                gp.setVisible(true);
+                                cancel();
+                            }
+
                         } else {
-
-                            stmt.executeUpdate(query);
-                            conn.close();
-                            //JOptionPane.showMessageDialog(null, "Congratulations, You are now Registered User.");
-                            GreetingPage gp = new GreetingPage();
-                            gp.setVisible(true);
-                            cancel();
+                            JOptionPane.showMessageDialog(null, "This is a black listed Email.\nYou can't register with this email address.", "Warning", JOptionPane.WARNING_MESSAGE);
                         }
-
-//                    } else {
-//                        JOptionPane.showMessageDialog(null, "All field needs to be filled out.");
-//                    }
                     } else {
                         JOptionPane.showMessageDialog(null, "This email address is not valid.");
                     }

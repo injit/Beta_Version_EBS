@@ -556,9 +556,9 @@ public class SuperUserFrame extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        UsersRegistrationPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("UsersRegistrationPU").createEntityManager();
-        bookinfoQuery1 = java.beans.Beans.isDesignTime() ? null : UsersRegistrationPUEntityManager.createQuery("SELECT b FROM Bookinfo b");
-        bookinfoList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : bookinfoQuery1.getResultList();
+        UsersRegistrationPUEntityManager0 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("UsersRegistrationPU").createEntityManager();
+        bookinfoQuery = java.beans.Beans.isDesignTime() ? null : UsersRegistrationPUEntityManager0.createQuery("SELECT b FROM Bookinfo b");
+        bookinfoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : bookinfoQuery.getResultList();
         Logout = new javax.swing.JButton();
         SuperUser = new javax.swing.JTabbedPane();
         NotificationCenter = new javax.swing.JTabbedPane();
@@ -2368,7 +2368,7 @@ public class SuperUserFrame extends javax.swing.JFrame {
 
         jTable1.setRowHeight(200);
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bookinfoList1, jTable1);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bookinfoList, jTable1);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${bookid}"));
         columnBinding.setColumnName("Bookid");
         columnBinding.setColumnClass(Integer.class);
@@ -2381,30 +2381,15 @@ public class SuperUserFrame extends javax.swing.JFrame {
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${author}"));
         columnBinding.setColumnName("Author");
         columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${uploader}"));
-        columnBinding.setColumnName("Uploader");
-        columnBinding.setColumnClass(String.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${rewardPoints}"));
-        columnBinding.setColumnName("Reward Points");
-        columnBinding.setColumnClass(Short.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${readingPoints}"));
         columnBinding.setColumnName("Reading Points");
         columnBinding.setColumnClass(Short.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${readingCounts}"));
-        columnBinding.setColumnName("Reading Counts");
-        columnBinding.setColumnClass(Short.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${lastDateRead}"));
-        columnBinding.setColumnName("Last Date Read");
-        columnBinding.setColumnClass(java.util.Date.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${readingTotalDuration}"));
-        columnBinding.setColumnName("Reading Total Duration");
-        columnBinding.setColumnClass(java.math.BigInteger.class);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${rating}"));
         columnBinding.setColumnName("Rating");
         columnBinding.setColumnClass(Double.class);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${ratingCounts}"));
-        columnBinding.setColumnName("Rating Counts");
-        columnBinding.setColumnClass(Short.class);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${category}"));
+        columnBinding.setColumnName("Category");
+        columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -4034,12 +4019,12 @@ public class SuperUserFrame extends javax.swing.JFrame {
     private javax.swing.JLabel UploadcoverPageLabel;
     private javax.swing.JComboBox UserNameComboBox;
     private javax.swing.JTextField UserTypeTextField;
-    private javax.persistence.EntityManager UsersRegistrationPUEntityManager;
+    private javax.persistence.EntityManager UsersRegistrationPUEntityManager0;
     private javax.swing.JButton ViewBook;
     private javax.swing.JTextField book_com_time;
     private javax.swing.JTextField book_removed;
-    private java.util.List<ebooksharing1.Bookinfo> bookinfoList1;
-    private javax.persistence.Query bookinfoQuery1;
+    private java.util.List<ebooksharing1.Bookinfo> bookinfoList;
+    private javax.persistence.Query bookinfoQuery;
     private javax.swing.JLabel bookpathprintlabel;
     private javax.swing.JTextField com_auth;
     private javax.swing.JTextField com_bID;

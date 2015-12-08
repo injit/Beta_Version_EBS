@@ -44,7 +44,9 @@ import javax.swing.ImageIcon;
     @NamedQuery(name = "Bookinfo.findByLastDateRead", query = "SELECT b FROM Bookinfo b WHERE b.lastDateRead = :lastDateRead"),
     @NamedQuery(name = "Bookinfo.findByReadingTotalDuration", query = "SELECT b FROM Bookinfo b WHERE b.readingTotalDuration = :readingTotalDuration"),
     @NamedQuery(name = "Bookinfo.findByRating", query = "SELECT b FROM Bookinfo b WHERE b.rating = :rating"),
-    @NamedQuery(name = "Bookinfo.findByRatingCounts", query = "SELECT b FROM Bookinfo b WHERE b.ratingCounts = :ratingCounts")})
+    @NamedQuery(name = "Bookinfo.findByRatingCounts", query = "SELECT b FROM Bookinfo b WHERE b.ratingCounts = :ratingCounts"),
+    @NamedQuery(name = "Bookinfo.findByGotComplainted", query = "SELECT b FROM Bookinfo b WHERE b.gotComplainted = :gotComplainted"),
+    @NamedQuery(name = "Bookinfo.findByCategory", query = "SELECT b FROM Bookinfo b WHERE b.category = :category")})
 public class Bookinfo implements Serializable {
     @Transient
     private PropertyChangeSupport changeSupport = new PropertyChangeSupport(this);
@@ -65,16 +67,13 @@ public class Bookinfo implements Serializable {
         
         return new ImageIcon(new ImageIcon(cover).getImage().getScaledInstance(100, 150, java.awt.Image.SCALE_SMOOTH));
 
-    }
-    @Column(name = "AUTHOR")
+    }    @Column(name = "AUTHOR")
     private String author;
     @Column(name = "SUMMARY")
     private String summary;
     @Lob
     @Column(name = "BOOKFILE")
-    //private Serializable bookfile;
     private byte[] bookfile;
-
     @Column(name = "UPLOADER")
     private String uploader;
     @Column(name = "REWARD_POINTS")
@@ -93,6 +92,10 @@ public class Bookinfo implements Serializable {
     private Double rating;
     @Column(name = "RATING_COUNTS")
     private Short ratingCounts;
+    @Column(name = "GOT_COMPLAINTED")
+    private Short gotComplainted;
+    @Column(name = "CATEGORY")
+    private String category;
 
     public Bookinfo() {
     }
@@ -120,8 +123,8 @@ public class Bookinfo implements Serializable {
         this.bookname = bookname;
         changeSupport.firePropertyChange("bookname", oldBookname, bookname);
     }
-    //originally Serializable converted to byte[]
-    public byte[] getCover() {
+
+    public Serializable getCover() {
         return cover;
     }
 
@@ -239,6 +242,26 @@ public class Bookinfo implements Serializable {
         Short oldRatingCounts = this.ratingCounts;
         this.ratingCounts = ratingCounts;
         changeSupport.firePropertyChange("ratingCounts", oldRatingCounts, ratingCounts);
+    }
+
+    public Short getGotComplainted() {
+        return gotComplainted;
+    }
+
+    public void setGotComplainted(Short gotComplainted) {
+        Short oldGotComplainted = this.gotComplainted;
+        this.gotComplainted = gotComplainted;
+        changeSupport.firePropertyChange("gotComplainted", oldGotComplainted, gotComplainted);
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        String oldCategory = this.category;
+        this.category = category;
+        changeSupport.firePropertyChange("category", oldCategory, category);
     }
 
     @Override

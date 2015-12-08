@@ -77,9 +77,9 @@ public class tabpannedUserPage extends javax.swing.JFrame {
     private void initComponents() {
         bindingGroup = new org.jdesktop.beansbinding.BindingGroup();
 
-        UsersRegistrationPUEntityManager = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("UsersRegistrationPU").createEntityManager();
-        bookinfoQuery1 = java.beans.Beans.isDesignTime() ? null : UsersRegistrationPUEntityManager.createQuery("SELECT b FROM Bookinfo b");
-        bookinfoList1 = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : bookinfoQuery1.getResultList();
+        UsersRegistrationPUEntityManager0 = java.beans.Beans.isDesignTime() ? null : javax.persistence.Persistence.createEntityManagerFactory("UsersRegistrationPU").createEntityManager();
+        bookinfoQuery = java.beans.Beans.isDesignTime() ? null : UsersRegistrationPUEntityManager0.createQuery("SELECT b FROM Bookinfo b");
+        bookinfoList = java.beans.Beans.isDesignTime() ? java.util.Collections.emptyList() : bookinfoQuery.getResultList();
         SharedBooksTab = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         BooksListLabel = new javax.swing.JLabel();
@@ -187,39 +187,28 @@ public class tabpannedUserPage extends javax.swing.JFrame {
 
         jTable1.setRowHeight(200);
 
-        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bookinfoList1, jTable1);
+        org.jdesktop.swingbinding.JTableBinding jTableBinding = org.jdesktop.swingbinding.SwingBindings.createJTableBinding(org.jdesktop.beansbinding.AutoBinding.UpdateStrategy.READ_WRITE, bookinfoList, jTable1);
         org.jdesktop.swingbinding.JTableBinding.ColumnBinding columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${bookid}"));
-        columnBinding.setColumnName("Book ID");
+        columnBinding.setColumnName("Bookid");
         columnBinding.setColumnClass(Integer.class);
-        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${image}"));
         columnBinding.setColumnName("Cover");
         columnBinding.setColumnClass(javax.swing.ImageIcon.class);
-        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${bookname}"));
-        columnBinding.setColumnName("Book Name");
+        columnBinding.setColumnName("Bookname");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${author}"));
         columnBinding.setColumnName("Author");
         columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${uploader}"));
-        columnBinding.setColumnName("Uploader");
-        columnBinding.setColumnClass(String.class);
-        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${readingPoints}"));
         columnBinding.setColumnName("Reading Points");
         columnBinding.setColumnClass(Short.class);
-        columnBinding.setEditable(false);
-        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${readingTotalDuration}"));
-        columnBinding.setColumnName("Reading Total Duration");
-        columnBinding.setColumnClass(java.math.BigInteger.class);
-        columnBinding.setEditable(false);
         columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${rating}"));
         columnBinding.setColumnName("Rating");
         columnBinding.setColumnClass(Double.class);
-        columnBinding.setEditable(false);
+        columnBinding = jTableBinding.addColumnBinding(org.jdesktop.beansbinding.ELProperty.create("${category}"));
+        columnBinding.setColumnName("Category");
+        columnBinding.setColumnClass(String.class);
         bindingGroup.addBinding(jTableBinding);
         jTableBinding.bind();
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2098,9 +2087,9 @@ public class tabpannedUserPage extends javax.swing.JFrame {
     private javax.swing.JComboBox UserNameComboBox;
     private javax.swing.JLabel UserNametobePosted;
     private javax.swing.JTextField UserTypeTextField;
-    private javax.persistence.EntityManager UsersRegistrationPUEntityManager;
-    private java.util.List<ebooksharing1.Bookinfo> bookinfoList1;
-    private javax.persistence.Query bookinfoQuery1;
+    private javax.persistence.EntityManager UsersRegistrationPUEntityManager0;
+    private java.util.List<ebooksharing1.Bookinfo> bookinfoList;
+    private javax.persistence.Query bookinfoQuery;
     private javax.swing.JLabel bookpathprintlabel;
     private javax.swing.JLabel coverpagepathprint;
     private javax.swing.JLabel coverpagepathprintLabel;
